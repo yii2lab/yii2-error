@@ -1,6 +1,10 @@
 {
     "name": "yii2lab/yii2-error",
-    "type": "yii2-extension",
+	"type": "library",
+    "description": "Error module for Yii2",
+    "keywords": ["yii2","error","module"],
+    "homepage": "https://github.com/yii2lab/yii2-error",
+    "license": "MIT",
     "authors": [
         {
             "name": "Vitaliy",
@@ -13,5 +17,7 @@
              "yii2lab\\error\\": "src"
          }
     },
-    "require": {}
+    "require": {
+		"php": ">=5.3.0"
+	}
 }
