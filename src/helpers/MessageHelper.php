@@ -1,6 +1,6 @@
 <?php
 
-namespace yii2lab\error\helpers;
+namespace yii2module\error\helpers;
 
 use yii\helpers\Inflector;
 

@@ -3,7 +3,7 @@
 /* @var $this yii\web\View */
 /* @var $exception Exception */
 
-use yii2lab\error\helpers\MessageHelper;
+use yii2module\error\helpers\MessageHelper;
 
 $this->title = t('error/main', 'title');
 

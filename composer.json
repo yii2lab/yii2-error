@@ -1,9 +1,9 @@
 {
-    "name": "yii2lab/yii2-error",
+    "name": "yii2module/yii2-error",
 	"type": "library",
     "description": "Error module for Yii2",
     "keywords": ["yii2","error","module"],
-    "homepage": "https://github.com/yii2lab/yii2-error",
+    "homepage": "https://github.com/yii2module/yii2-error",
     "license": "MIT",
     "authors": [
         {
@@ -14,7 +14,7 @@
 	"minimum-stability": "dev",
 	"autoload": {
         "psr-4": {
-             "yii2lab\\error\\": "src"
+             "yii2module\\error\\": "src"
          }
     },
     "require": {
