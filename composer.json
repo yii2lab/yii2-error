@@ -1,23 +1,22 @@
 {
-    "name": "yii2module/yii2-error",
+	"name": "yii2module/yii2-error",
 	"type": "library",
-    "description": "Error module for Yii2",
-    "keywords": ["yii2","error","module"],
-    "homepage": "https://github.com/yii2module/yii2-error",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Vitaliy",
-            "email": "theyamshikov@yandex.ru"
-        }
-    ],
+	"keywords": ["yii2","module","error"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Vitaliy",
+			"email": "theyamshikov@yandex.ru"
+		}
+	],
 	"minimum-stability": "dev",
 	"autoload": {
-        "psr-4": {
-             "yii2module\\error\\": "src"
-         }
-    },
-    "require": {
+		"psr-4": {
+			"yii2module\\error\\": "src"
+		}
+	},
+	"require": {
+		"yiisoft/yii2": "*",
 		"php": ">=5.3.0"
 	}
 }
