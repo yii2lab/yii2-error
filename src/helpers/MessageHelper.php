@@ -28,8 +28,6 @@ class MessageHelper
 	
 	function get($exception) {
 		$translate = self::load($exception);
-		//$translate['title'] = mb_ucfirst($translate['title']);
-		//$translate['message'] = mb_ucfirst($translate['message']);
 		$translate['message'] = str_replace('. ', '.<br/>',$translate['message']);
 		return $translate;
 	}
