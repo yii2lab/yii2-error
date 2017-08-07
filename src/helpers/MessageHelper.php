@@ -19,7 +19,8 @@ class MessageHelper
 			$translate['message'] = t('this/main', 'error_for_production');
 		}
 		$translate['title'] = $translate['title'] ?: $exception->getName();
-		$translate['message'] = $translate['message'] ?: $exception->getMessage();
+		$translate['message'] = $exception->getMessage() ?: $translate['message'];
+		
 		if(YII_ENV_DEV) {
 			$translate['title'] .= ' (#' . $translateKey . ')';
 		}
