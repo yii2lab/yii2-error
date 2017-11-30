@@ -7,7 +7,7 @@ use yii\helpers\Inflector;
 class MessageHelper
 {
 	
-	private function load($exception) {
+	private static function load($exception) {
 		$translateKey = $exception->statusCode ?: $exception->getName();
 		$translateKey = Inflector::variablize($translateKey);
 		$translateKey = Inflector::underscore($translateKey);
@@ -27,7 +27,7 @@ class MessageHelper
 		return $translate;
 	}
 	
-	function get($exception) {
+	function static get($exception) {
 		$translate = self::load($exception);
 		$translate['message'] = str_replace('. ', '.<br/>',$translate['message']);
 		return $translate;
