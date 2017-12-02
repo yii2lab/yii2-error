@@ -27,7 +27,7 @@ class MessageHelper
 		return $translate;
 	}
 	
-	function static get($exception) {
+	static function get($exception) {
 		$translate = self::load($exception);
 		$translate['message'] = str_replace('. ', '.<br/>',$translate['message']);
 		return $translate;
