@@ -5,7 +5,7 @@
 
 use yii2module\error\helpers\MessageHelper;
 
-$this->title = t('error/main', 'title');
+$this->title = Yii::t('error/main', 'title');
 
 $translate = MessageHelper::get($exception);
 
