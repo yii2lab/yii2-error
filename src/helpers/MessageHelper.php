@@ -17,7 +17,7 @@ class MessageHelper
 			$translate = [];
 		}
 		if(YII_ENV_PROD && !empty($translate) && empty($translate['message'])) {
-			$translate['message'] = Yii::t('this/main', 'error_for_production');
+			$translate['message'] = Yii::t('error/main', 'error_for_production');
 		}
 		$translate['title'] = $translate['title'] ?: $exception->getName();
 		$translate['message'] = $exception->getMessage() ?: $translate['message'];
