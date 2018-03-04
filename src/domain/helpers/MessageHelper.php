@@ -3,6 +3,7 @@
 namespace yii2module\error\domain\helpers;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Inflector;
 use yii\web\HttpException;
 use Exception;
@@ -12,17 +13,8 @@ class MessageHelper
 	
 	public static function get(Exception $exception) {
 		$translate = self::getTranslate($exception);
-		$translate = self::filterTranslate($translate, $exception);
+		$translate = self::normalizeTranslate($translate, $exception);
 		return $translate;
-	}
-	
-	private static function getTranslateByClassName(Exception $exception) {
-		$className = get_class($exception);
-		$translate = Yii::t('error/exceptions', $className);
-		if(is_array($translate)) {
-			return $translate;
-		}
-		return null;
 	}
 	
 	private static function getExceptionCode(Exception $exception)
@@ -33,17 +25,26 @@ class MessageHelper
 		return $exception->getCode();
 	}
 	
-	private static function getExceptionName($exception)
+	private static function getExceptionName(Exception $exception)
 	{
-		if ($exception instanceof Exception) {
+		if ($exception instanceof HttpException) {
 			$name = $exception->getName();
 		} else {
-			$name = 'Error';
+			$name = Yii::t('error/main', 'default_title');
 		}
 		if (YII_ENV_DEV && $code = self::getExceptionCode($exception)) {
 			$name .= " (#$code)";
 		}
 		return $name;
+	}
+	
+	private static function getTranslateByClassName(Exception $exception) {
+		$className = get_class($exception);
+		$translate = Yii::t('error/exceptions', $className);
+		if(is_array($translate)) {
+			return $translate;
+		}
+		return null;
 	}
 	
 	private static function getTranslateByStatusCode(Exception $exception) {
@@ -56,15 +57,19 @@ class MessageHelper
 		return null;
 	}
 	
-	private static function filterTranslate($translate, Exception $exception) {
-		$translate['class'] = get_class($exception);
-		$translate['code'] = self::getExceptionCode($exception);
-		$translate['name'] = $translate['name'] ?: self::getExceptionName($exception);
-		$translate['message'] = $exception->getMessage() ?: $translate['message'];
-		if(YII_ENV_PROD && !empty($translate) && empty($translate['message'])) {
-			$translate['message'] = Yii::t('error/main', 'error_for_production');
-		}
+	private static function normalizeTranslate($translate, Exception $exception) {
 		$translate['exception'] = $exception;
+		if(empty($translate['name'])) {
+			$translate['name'] = self::getExceptionName($exception);
+		}
+		if(YII_ENV_PROD && !empty($translate) && empty($translate['message'])) {
+			/** @var array $forProduction */
+			$forProduction = Yii::t('error/main', 'error_for_production');
+			$translate = ArrayHelper::merge($translate, $forProduction);
+		}
+		if(empty($translate['message'])) {
+			$translate['message'] = $exception->getMessage();
+		}
 		return $translate;
 	}
 	
@@ -73,6 +78,7 @@ class MessageHelper
 		if(!$translate) {
 			$translate = self::getTranslateByStatusCode($exception);
 		}
+		
 		return $translate;
 	}
 	

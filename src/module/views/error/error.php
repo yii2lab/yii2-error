@@ -1,13 +1,14 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $exception Exception */
-/* @var $name string */
-/* @var $message string */
+/* @var $this yii\web\View
+ * @var $exception Exception
+ * @var $name string
+ * @var $message string */
 
-$this->title = Yii::t('error/main', 'title');
+$this->title = $name;
 
 ?>
+
 <div class="error">
 
 	<h1>
