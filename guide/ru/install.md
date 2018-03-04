@@ -7,22 +7,30 @@
 composer require yii2module/yii2-error
 ```
 
-Объявляем в common модуль:
+Объявляем в `common` модуль:
 
 ```php
 return [
 	'modules' => [
 		// ...
-		'error' => 'yii2module\error\Module',
+		'error' => 'yii2module\error\module\Module',
 		// ...
 	],
 ];
 ```
 
-Объявляем backend\config\main и frontend\config\main конфиг:
+Объявляем `backend\config\main` и `frontend\config\main` конфиг:
 
 ```php
 'errorHandler' => [
 	'errorAction' => 'error/error/error',
 ],
+```
+
+Настраиваем контейнер в `common\config\bootstrap`:
+
+```php
+Yii::$container->set('yii\web\ErrorHandler', [
+	'class' => 'yii2module\error\domain\web\ErrorHandler',
+]);
 ```
