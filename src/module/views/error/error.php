@@ -2,22 +2,20 @@
 
 /* @var $this yii\web\View */
 /* @var $exception Exception */
-
-use yii2module\error\domain\helpers\MessageHelper;
+/* @var $name string */
+/* @var $message string */
 
 $this->title = Yii::t('error/main', 'title');
-
-$translate = MessageHelper::get($exception);
 
 ?>
 <div class="error">
 
 	<h1>
-		<?= $translate['title'] ?>
+		<?= $name ?>
 	</h1>
 
 	<div class="alert alert-danger">
-		<?= nl2br($translate['message']) ?>
+		<?= nl2br($message) ?>
 	</div>
 
 </div>

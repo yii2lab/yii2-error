@@ -17,9 +17,9 @@ class ErrorController extends Controller
 	{
 		return [
 			'error' => [
-				'class' => 'yii\web\ErrorAction',
+				'class' => 'yii2module\error\module\actions\ErrorAction',
 			],
 		];
 	}
-
+	
 }
