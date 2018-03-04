@@ -1,6 +1,6 @@
 <?php
 
-namespace yii2module\error\helpers;
+namespace yii2module\error\domain\helpers;
 
 use yii\base\Model;
 use yii\helpers\ArrayHelper;

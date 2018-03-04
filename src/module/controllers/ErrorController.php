@@ -1,6 +1,6 @@
 <?php
 
-namespace yii2module\error\controllers;
+namespace yii2module\error\module\controllers;
 
 use yii\web\Controller;
 

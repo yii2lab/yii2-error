@@ -1,9 +1,9 @@
 <?php
 
-namespace yii2module\error\web;
+namespace yii2module\error\domain\web;
 
 use yii2lab\domain\exceptions\UnprocessableEntityHttpException;
-use yii2module\error\helpers\UnProcessibleHelper;
+use yii2module\error\domain\helpers\UnProcessibleHelper;
 
 class ErrorHandler extends \yii\web\ErrorHandler
 {
