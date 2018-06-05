@@ -18,14 +18,16 @@ class UnProcessibleHelper
 		return self::normalizeArray($errors);
 	}
 	
-	private static function normalizeArray($errors) {
+	private static function normalizeArray(array $errors) {
 		$result = [];
-		foreach($errors as $field => $error) {
-			foreach ($error as $message) {
-				$result[] = [
-					'field' => $field,
-					'message' => $message,
-				];
+		if(!empty($errors)) {
+			foreach($errors as $field => $error) {
+				foreach ($error as $message) {
+					$result[] = [
+						'field' => $field,
+						'message' => $message,
+					];
+				}
 			}
 		}
 		return $result;
