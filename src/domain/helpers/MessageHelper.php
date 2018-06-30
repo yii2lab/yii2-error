@@ -78,7 +78,10 @@ class MessageHelper
 		if(!$translate) {
 			$translate = self::getTranslateByStatusCode($exception);
 		}
-		
+		$message = $exception->getMessage();
+		if($message) {
+			$translate['message'] = $message;
+		}
 		return $translate;
 	}
 	
