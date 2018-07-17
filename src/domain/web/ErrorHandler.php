@@ -2,11 +2,14 @@
 
 namespace yii2module\error\domain\web;
 
+use yii2lab\designPattern\scenario\helpers\ScenarioHelper;
 use yii2lab\domain\exceptions\UnprocessableEntityHttpException;
 use yii2module\error\domain\helpers\UnProcessibleHelper;
 
 class ErrorHandler extends \yii\web\ErrorHandler
 {
+	
+	public $filters = [];
 	
 	protected function convertExceptionToArray($exception)
 	{
@@ -14,7 +17,18 @@ class ErrorHandler extends \yii\web\ErrorHandler
 			$errors = $exception->getErrors();
 			return UnProcessibleHelper::assoc2indexed($errors);
 		}
+		$this->runFilters($exception);
 		return parent::convertExceptionToArray($exception);
 	}
 
+	protected function renderException($exception) {
+		$this->runFilters($exception);
+		parent::renderException($exception);
+	}
+	
+	private function runFilters(\Throwable $exception) {
+		$filterCollection = ScenarioHelper::forgeCollection($this->filters);
+		ScenarioHelper::runAll($filterCollection, $exception);
+	}
+	
 }
