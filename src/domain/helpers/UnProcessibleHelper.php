@@ -4,6 +4,7 @@ namespace yii2module\error\domain\helpers;
 
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
+use yii2lab\domain\helpers\ErrorCollection;
 
 class UnProcessibleHelper
 {
@@ -14,6 +15,9 @@ class UnProcessibleHelper
 		}
 		if($errors instanceof Model) {
 			$errors = $errors->getErrors();
+		}
+		if($errors instanceof ErrorCollection) {
+			return $errors->all();
 		}
 		return self::normalizeArray($errors);
 	}
