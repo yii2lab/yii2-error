@@ -9,5 +9,10 @@ return [
 		'name' => 'Приложение не инициализировано',
 		'message' => 'Инициализируйте приложение',
 	],
-	
+
+    'yii2lab\\domain\\exceptions\\UnprocessableEntityHttpException' => [
+        //'title' => '',
+        'name' => 'Переданы неверные данные',
+    ],
+
 ];

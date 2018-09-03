@@ -7,16 +7,29 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Inflector;
 use yii\web\HttpException;
 use Exception;
+use yii2lab\domain\exceptions\UnprocessableEntityHttpException;
 
 class MessageHelper
 {
 	
 	public static function get(Exception $exception) {
-		$translate = self::getTranslate($exception);
+        $translate = self::getTranslate($exception);
+	    if($exception instanceof UnprocessableEntityHttpException) {
+            $translate['message'] = self::getUnprocessableEntityExceptionMessage($exception);
+        }
 		$translate = self::normalizeTranslate($translate, $exception);
 		return $translate;
 	}
-	
+
+    private static function getUnprocessableEntityExceptionMessage(Exception $exception) {
+        $content = '<ul>';
+        foreach ($exception->getErrors() as $error) {
+            $content .= "<li>{$error['message']}</li>";
+        }
+        $content .= '<ul>';
+        return $content;
+    }
+
 	private static function getExceptionCode(Exception $exception)
 	{
 		if ($exception instanceof HttpException) {
