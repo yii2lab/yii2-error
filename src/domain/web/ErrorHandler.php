@@ -2,7 +2,7 @@
 
 namespace yii2module\error\domain\web;
 
-use yii2lab\designPattern\scenario\helpers\ScenarioHelper;
+use yii2lab\extension\scenario\helpers\ScenarioHelper;
 use yii2lab\domain\exceptions\UnprocessableEntityHttpException;
 use yii2module\error\domain\helpers\UnProcessibleHelper;
 
