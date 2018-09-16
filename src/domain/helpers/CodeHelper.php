@@ -29,9 +29,9 @@ class CodeHelper
 				$permissionName = strtolower($matches2[1]);
 				$permissionName = Inflector::camelize($permissionName);
 				$permissionName = 'o' . $permissionName;
-				$item = Yii::$domain->rbac->item->createPermission($permissionName);
+				$item = \App::$domain->rbac->item->createPermission($permissionName);
 				$item->description = '### Это полномочие сгенерированно автоматически, по причине его отсутсвия!';
-				Yii::$domain->rbac->item->addItem($item);
+				\App::$domain->rbac->item->addItem($item);
 				return $permissionName;
 			}
 		}
