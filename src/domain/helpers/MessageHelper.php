@@ -45,7 +45,7 @@ class MessageHelper
 		} else {
 			$name = Yii::t('error/main', 'default_title');
 		}
-		if (YII_ENV_DEV && $code = self::getExceptionCode($exception)) {
+		if ((YII_ENV_DEV || YII_ENV_PRETEST) && $code = self::getExceptionCode($exception)) {
 			$name .= " (#$code)";
 		}
 		return $name;
